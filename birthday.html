@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Dada 🎉</title>
+  <style>
+    /* ======== THEME COLORS ======== */
+    :root {
+      --bg1: #0f172a;
+      --accent: linear-gradient(135deg, #ff8a00 0%, #e52e71 100%);
+      --card: rgba(255, 255, 255, 0.06);
+      --glass: rgba(255, 255, 255, 0.06);
+      --text: #f8fafc;
+    }
+
+    /* ======== RESET & BODY ======== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: radial-gradient(1200px 800px at 10% 10%, rgba(229, 46, 113, 0.12), transparent 8%),
+        radial-gradient(1000px 700px at 90% 90%, rgba(255, 138, 0, 0.07), transparent 8%),
+        var(--bg1);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ======== CONTAINER ======== */
+    .container {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 28px;
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+      box-shadow: 0 10px 40px rgba(2, 6, 23, 0.75);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ======== HEADER ======== */
+    header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 18px;
+      background: var(--glass);
+      padding: 6px;
+      border: 2px solid rgba(255, 255, 255, 0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    h1 {
+      font-size: 42px;
+      margin: 0;
+    }
+
+    .subtitle {
+      opacity: 0.85;
+      margin-top: 6px;
+    }
+
+    .meta {
+      margin-left: auto;
+      text-align: right;
+    }
+
+    .date-pill {
+      background: linear-gradient(90deg, #00000020, #ffffff08);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    .fancy {
+      background: var(--accent);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* ======== MAIN LAYOUT ======== */
+    main {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .card {
+      background: var(--card);
+      padding: 18px;
+      border-radius: 14px;
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    /* ======== GALLERY ======== */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .gallery img:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+    }
+
+    /* ======== RIGHT COLUMN ======== */
+    .right {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .big-photo {
+      height: 300px;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .big-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .btn {
+      background: var(--glass);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn:active {
+      transform: translateY(2px);
+    }
+
+    /* ======== BALLOONS ======== */
+    .balloon {
+      position: absolute;
+      width: 80px;
+      height: 110px;
+      border-radius: 60% 60% 50% 50%;
+      opacity: 0.9;
+      top: -40px;
+      animation: floatUp 8s ease-in-out infinite;
+    }
+
+    .balloon.s1 {
+      background: linear-gradient(180deg, #ff8a00, #e52e71);
+      left: 8%;
+    }
+
+    .balloon.s2 {
+      background: linear-gradient(180deg, #22c1c3, #fdbb2d);
+      left: 22%;
+      width: 60px;
+      height: 90px;
+      animation-delay: 1.6s;
+    }
+
+    .balloon.s3 {
+      background: linear-gradient(180deg, #7f7fd5, #86a8e7);
+      left: 74%;
+      animation-delay: 0.8s;
+    }
+
+    .balloon::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: -18px;
+      width: 2px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.06);
+      transform: translateX(-50%);
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(30px) rotate(-6deg);
+      }
+
+      50% {
+        transform: translateY(-10px) rotate(6deg);
+      }
+
+      100% {
+        transform: translateY(-50px) rotate(-6deg);
+      }
+    }
+
+    /* ======== MODAL ======== */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .25s ease;
+    }
+
+    .modal.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal .imgwrap {
+      max-width: 900px;
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .modal img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ======== RESPONSIVE ======== */
+    @media (max-width: 980px) {
+      main {
+        grid-template-columns: 1fr;
+      }
+
+      .meta {
+        display: none;
+      }
+
+      .big-photo {
+        height: 220px;
+      }
+    }
+
+    footer {
+      margin-top: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      opacity: 0.9;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container" id="page">
+    <canvas id="confetti"></canvas>
+    <div class="balloon s1"></div>
+    <div class="balloon s2"></div>
+    <div class="balloon s3"></div>
+
+    <!-- Header -->
+    <header>
+      <div class="avatar card">
+        <img src="images/photo1.jpg" alt="Dada">
+      </div>
+      <div>
+        <h1>Happy Birthday <span class="fancy">Dada</span> 🎂</h1>
+        <div class="subtitle">May your day be full of laughter, love and good food. Aap hamesha khush raho aur khub sara ❤️</div>
+      </div>
+      <div class="meta">
+        <div class="date-pill">13 September 1993</div>
+      </div>
+    </header>
+
+    <!-- Main -->
+    <main>
+      <section>
+        <!-- Gallery -->
+        <div class="card">
+          <h3>MEMORIES & GALLERY</h3>
+          <div class="gallery">
+            <img src="images/photo1.jpg" alt="photo1">
+            <img src="images/photo2.jpg" alt="photo2">
+            <img src="images/photo3.jpg" alt="photo3">
+            <img src="images/photo4.jpg" alt="photo4">
+            <img src="images/photo5.jpg" alt="photo5">
+            <img src="images/photo6.jpg" alt="photo6">
+            <img src="images/photo7.jpg" alt="photo7">
+            <img src="images/photo8.jpg" alt="photo8">
+            <img src="images/photo9.jpg" alt="photo9">
+            <img src="images/photo10.jpg" alt="photo10">
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="card" style="margin-top:14px">
+          <h4>Personal Message</h4>
+          <p>Happy Birthday Bhaiya! 🎉 Wishing you endless happiness and success! You’ve always been more than just a brother—you’re my guide, protector, supporter, and sheeeer also. I’m truly grateful
+            for all the love, advice, and countless memories we’ve shared. May this year bring you endless happiness,
+            success, and all the things you’ve been wishing for. Enjoy your special day to the fullest—you deserve
+            nothing but the best! ❤️" Thoda sa request hai - Bhaiya is line ke just niche 'SURPRISE ❤️' pe click kariye  please . Aapke liye meri taraf se hai kuch .</p>
+          <div class="controls">
+            <button class="btn" id="ttsBtn">Play TTS Wish</button>
+            <button class="btn" id="playRecordedBtn">SURPRISE ❤️</button>
+            <button class="btn" id="confettiBtn">Celebrate 🎉</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right -->
+      <aside class="right">
+        <div class="card big-photo">
+          <img src="images/photo8.jpg" alt="Big Photo">
+        </div>
+        <div class="card">
+          <h4>बाते लिखल इतिहास में ए सब सिलसिला प्रखंड हो या जिला बाबुआने से हिला 🦾</h4>
+          <p></p>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      <small>Made with ❤️ for Avi Dada</small>
+      <small>LOVE YOU! TAKE CARE! ❤️</small>
+    </footer>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="imgwrap"><img src="" alt="Preview"></div>
+  </div>
+
+  <script>
+    // Modal
+    document.querySelectorAll('.gallery img').forEach(img => {
+      img.addEventListener('click', e => {
+        document.querySelector('#modal img').src = e.target.src;
+        document.getElementById('modal').classList.add('open');
+      });
+    });
+    document.getElementById('modal').addEventListener('click', () => {
+      document.getElementById('modal').classList.remove('open');
+    });
+
+    // Confetti
+    const confettiCanvas = document.getElementById('confetti');
+    const ctx = confettiCanvas.getContext('2d');
+    function launchConfetti() {
+      confettiCanvas.width = confettiCanvas.clientWidth * window.devicePixelRatio;
+      confettiCanvas.height = confettiCanvas.clientHeight * window.devicePixelRatio;
+      const particles = Array.from({ length: 100 }, () => ({
+        x: Math.random() * confettiCanvas.width,
+        y: Math.random() * confettiCanvas.height,
+        vy: Math.random() * 6 + 2,
+        vx: (Math.random() - 0.5) * 6,
+        r: Math.random() * 8 + 4,
+        color: ['#ff3860', '#ffdd57', '#23d160', '#00d1b2', '#7f8cfa'][Math.floor(Math.random() * 5)]
+      }));
+      function draw() {
+        ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+        particles.forEach(p => {
+          p.x += p.vx; p.y += p.vy; p.vy += 0.15;
+          ctx.fillStyle = p.color;
+          ctx.fillRect(p.x, p.y, p.r, p.r * 0.6);
+        });
+        requestAnimationFrame(draw);
+      }
+      draw();
+      setTimeout(() => ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height), 3000);
+    }
+
+    document.getElementById('confettiBtn').addEventListener('click', () => {
+      launchConfetti();
+      speakWish();
+    });
+
+    // TTS
+    function speakWish() {
+      if (!('speechSynthesis' in window)) return;
+      const msg = new SpeechSynthesisUtterance(`Happy Birthday Dada! Wishing you lots of love, laughter and good health.`);
+      msg.lang = 'en-US'; msg.rate = 0.95; msg.pitch = 1.05;
+      speechSynthesis.cancel(); speechSynthesis.speak(msg);
+    }
+    document.getElementById('ttsBtn').addEventListener('click', speakWish);
+
+    // Recorded Audio
+    document.getElementById('playRecordedBtn').addEventListener('click', () => {
+      const audio = new Audio('dada-wish.mp3');
+      audio.play().catch(() => alert('No audio file found! Place dada-wish.mp3 in the same folder.'));
+    });
+  </script>
+</body>
+</html>
